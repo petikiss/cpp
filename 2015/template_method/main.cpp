@@ -5,23 +5,35 @@
 class B
 {
   public:
-   void printBase() { printPrivateBase(); }
+
+   // the skeleton of an algorithm in a base class "template method"
+   void execute()
+      {
+         printPrivateBase1();
+         printPrivateBase2();
+      }
   private:
-   virtual void printPrivateBase() = 0; // abstract method, mandatory to implement!
+   virtual void printPrivateBase1() = 0; // abstract method, mandatory to implement!
+   virtual void printPrivateBase2() = 0; // abstract method, mandatory to implement!
 };
 
 
 class D : public B
 {
   public:
-   void printPrivateBase()
+   void printPrivateBase1()
+      {
+         std::cout << "Concrate implementation in derived class!\n";
+      }
+
+   void printPrivateBase2()
       {
          std::cout << "Concrate implementation in derived class!\n";
       }
 
    void printDerived()
       {
-         printBase();
+         execute();
       }
   private:
 };
