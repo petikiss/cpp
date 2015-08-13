@@ -1,4 +1,5 @@
 // Template method design pattern
+// http://www.gotw.ca/publications/mill18.htm
 
 #include <iostream>
 
