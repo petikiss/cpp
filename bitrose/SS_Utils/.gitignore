@@ -1,0 +1,6 @@
+/src/*.os
+/tst/*.o
+/tst/testutils
+
+/libutils.so
+/.sconsign.dblite

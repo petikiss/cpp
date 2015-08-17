@@ -1,0 +1,7 @@
+# -*- python -*-
+
+env = Environment()
+env["CPPFLAGS"] = "-O2 -Wall"
+
+SConscript(["SConscript", "tst/SConscript"], exports = "env")
+# SConscript(["SConscript"], exports = "env")

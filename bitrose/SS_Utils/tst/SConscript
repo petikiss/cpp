@@ -1,0 +1,31 @@
+# -*- python -*-
+
+import os
+import SCons
+
+Import("env")
+
+def run_unit_test(target, source, env) :
+    if os.system("LD_LIBRARY_PATH=../libs:/usr/local/lib/ ./tst/testutils") != 0 :
+        raise SCons.Errors.StopError("Some unit test failed! :(")
+    else:
+        print "Done :)"
+
+sources = [
+        "main.cpp",
+        "TestStringUtils.cpp"
+        ]
+
+test = env.Program (
+      "testutils",
+      CPPPATH = ["../../include"],
+      LIBPATH = ["../../libs"],
+      LIBS    = ["utils", "boost_unit_test_framework"],
+      source  = sources
+      )
+
+
+cmd = Command("_ut", [], Action(run_unit_test, None))
+Depends(cmd, test)
+
+Alias("unit_test", cmd)

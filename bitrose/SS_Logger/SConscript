@@ -1,0 +1,37 @@
+# -*- python -*-
+
+import os
+
+Import("env")
+env = env.Clone()
+
+headers = [
+    "logger/Logger.hpp"
+]
+
+
+sources = [
+    "Logger.cpp"
+]
+
+
+liblogger = env.SharedLibrary(
+            "logger",
+            CPPFLAGS= ['-fprofile-arcs', '-ftest-coverage','-g'],
+            CPPPATH = ["../include/"],
+            LIBPATH = ["../libs"],
+            LIBS    = ["gcov"],
+            source  = ["src/%s" % x for x in sources],
+)
+
+Default(liblogger)
+
+
+# Install
+lib_prefix = "/usr/lib"
+inc_prefix = "/usr/include/liblogger"
+
+Alias("install", Install(lib_prefix, liblogger))
+
+for h in headers :
+    Alias("install", Install(os.path.join(inc_prefix, h[:h.rfind('/')]), os.path.join("include", h)))

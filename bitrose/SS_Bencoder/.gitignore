@@ -1,0 +1,6 @@
+/src/*.os
+/tst/*.o
+/tst/testbencoder
+
+/libbencoder.so
+/.sconsign.dblite

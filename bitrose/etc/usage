@@ -1,0 +1,25 @@
+install: (tested with this)
+--------
+- scons:
+       script: v1.2.0.d20100117.r4629, 2010/01/17 22:23:21, by scons on scons-dev
+       engine: v1.2.0.d20100117.r4629, 2010/01/17 22:23:21, by scons on scons-dev
+
+- boost (boost 1.50.0)
+
+- gcov (GCC) 4.7.2
+- lcov: LCOV version 1.9 
+- genhtml: LCOV version 1.9 (lcov package)
+- perl-gd 2.46-3 (Interface to Gd Graphics Library) for "genhtml --frames"
+- valgrind 3.8.1-2
+
+compile:
+--------
+$ scons -Q
+
+unit test run:
+$ scons unit_test
+$ scons unit_test_memcheck
+
+clean:
+-----
+$ scons -c

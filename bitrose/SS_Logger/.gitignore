@@ -1,0 +1,6 @@
+/src/*.os
+/tst/*.o
+/tst/testlogger
+
+/liblogger.so
+/.sconsign.dblite

@@ -1,0 +1,63 @@
+# -*- python -*-
+
+import os
+import SCons
+
+Import("env")
+
+def run_coverage() :
+    print "Running coverage measurement"
+    os.system("echo $PWD")
+    os.system("lcov -b $PWD --directory src/ -c -o tst/cov1.info")
+    os.system("lcov -r tst/cov1.info \"/usr/*\" -o tst/cov1.info")
+    os.system("genhtml -o tst/html --legend --frames --no-branch-coverage tst/cov1.info")
+    os.system("perl ../etc/coverage_check.pl 50 tst/html/index.html")
+
+def run_unit_test(target, source, env) :
+    if os.system("LD_LIBRARY_PATH=../libs:/usr/local/lib/ ./tst/testbencoder") != 0 :
+        raise SCons.Errors.StopError("Some unit test failed! :(")
+    else:
+        #run_coverage()
+        print "Done :)"
+
+def run_unit_test_with_mem_check(target, source, env):
+    print "Running with valgrind..."
+    if os.system("LD_LIBRARY_PATH=../libs:/usr/local/lib/ valgrind --log-file=leak.log --leak-check=full --show-reachable=yes --show-below-main=no --track-origins=yes  --num-callers=30 --malloc-fill=0xaa --free-fill=0xdd ./tst/testbencoder") != 0:
+        raise SCons.Errors.StopError("Some unit test failed! :(")
+    else:
+        if os.system("../etc/leak_check.pl leak.log") != 0:
+            raise SCons.Errors.StopError("Memory leak! :(")
+        else:
+            print "Done :)"
+
+sources = [
+        "main.cpp",
+        "TestParse.cpp"
+        ]
+
+test = env.Program (
+      "testbencoder",
+      CPPFLAGS = ['-fprofile-arcs', '-ftest-coverage','-O2', '-Wall', '-g'],
+      CPPPATH = ["../../include"],
+      LIBPATH = ["../../libs"],
+      LIBS    = ["utils","logger", "bencoder", "boost_unit_test_framework", "gcov"],
+      source  = sources
+      )
+
+
+cmd = Command("_ut", [], Action(run_unit_test, None))
+Depends(cmd, test)
+
+cmd2 = Command("_ut2", [], Action(run_unit_test_with_mem_check, None))
+Depends(cmd2, test);
+
+if GetOption("clean"):
+    os.system("echo $PWD")
+    os.system("rm -Rf *.gcda")
+    os.system("rm -Rf *.gcno")
+    os.system("rm -Rf *.info")
+    os.system("rm -Rf html/*")
+    os.system("rm -Rf leak.log")
+
+Alias("unit_test", cmd)
+Alias("unit_test_memcheck",cmd2)

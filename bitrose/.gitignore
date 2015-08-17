@@ -1,0 +1,6 @@
+.sconsign.dblite
+*.gcda
+*.gcno
+*.log
+*.xml
+*.info

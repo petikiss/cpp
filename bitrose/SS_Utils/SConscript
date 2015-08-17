@@ -1,0 +1,21 @@
+# -*- python -*-
+
+import os
+
+Import("env")
+env = env.Clone()
+
+sources = [
+    "StringUtils.cpp"
+    ]
+
+# Compile
+libutils = env.SharedLibrary(
+                "utils",
+                CPPFLAGS = ['-fprofile-arcs', '-ftest-coverage','-g'],
+                CPPPATH = ["../include/"],
+                LIBS= ['gcov'],
+                source  = ["src/%s" % x for x in sources],
+              )
+
+Default(libutils)
