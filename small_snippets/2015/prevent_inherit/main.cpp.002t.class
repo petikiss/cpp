@@ -1,0 +1,18 @@
+Class Usable_lock
+   size=1 align=1
+   base size=0 base align=1
+Usable_lock (0x0xb7321000) 0 empty
+
+Class Usable
+   size=1 align=1
+   base size=1 base align=1
+Usable (0x0xb7264348) 0 empty
+  Usable_lock (0x0xb7321038) 0 empty
+
+Class DD
+   size=1 align=1
+   base size=1 base align=1
+DD (0x0xb7264528) 0 empty
+  Usable (0x0xb7264564) 0 empty
+    Usable_lock (0x0xb7321070) 0 empty
+

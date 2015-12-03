@@ -1,0 +1,51 @@
+Class lock
+   size=1 align=1
+   base size=0 base align=1
+lock (0x0xb724e000) 0 empty
+
+Vtable for A
+A::_ZTV1A: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& _ZTI1A)
+
+VTT for A
+A::_ZTT1A: 1u entries
+0     ((& A::_ZTV1A) + 12u)
+
+Class A
+   size=4 align=4
+   base size=4 base align=4
+A (0x0xb7192348) 0 nearly-empty
+    vptridx=0u vptr=((& A::_ZTV1A) + 12u)
+  lock (0x0xb724e038) 0 empty virtual
+      vbaseoffset=-12
+
+Vtable for B
+B::_ZTV1B: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& _ZTI1B)
+
+Construction vtable for A (0x0xb71923fc instance) in B
+B::_ZTC1B0_1A: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& _ZTI1A)
+
+VTT for B
+B::_ZTT1B: 2u entries
+0     ((& B::_ZTV1B) + 12u)
+4     ((& B::_ZTC1B0_1A) + 12u)
+
+Class B
+   size=4 align=4
+   base size=4 base align=4
+B (0x0xb71923c0) 0 nearly-empty
+    vptridx=0u vptr=((& B::_ZTV1B) + 12u)
+  A (0x0xb71923fc) 0 nearly-empty
+      primary-for B (0x0xb71923c0)
+      subvttidx=4u
+    lock (0x0xb724e070) 0 empty virtual
+        vbaseoffset=-12
+

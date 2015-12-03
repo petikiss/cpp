@@ -1,0 +1,26 @@
+Class Top
+   size=4 align=4
+   base size=4 base align=4
+Top (0x0xb72d4000) 0
+
+Class Left
+   size=8 align=4
+   base size=8 base align=4
+Left (0x0xb72171e0) 0
+  Top (0x0xb72d4038) 0
+
+Class Right
+   size=8 align=4
+   base size=8 base align=4
+Right (0x0xb7217258) 0
+  Top (0x0xb72d4070) 0
+
+Class Bottom
+   size=20 align=4
+   base size=20 base align=4
+Bottom (0x0xb72cc4c0) 0
+  Left (0x0xb72172d0) 0
+    Top (0x0xb72d40a8) 0
+  Right (0x0xb721730c) 8
+    Top (0x0xb72d40e0) 8
+

@@ -1,0 +1,51 @@
+Class Usable_lock
+   size=1 align=1
+   base size=0 base align=1
+Usable_lock (0x0xb725e000) 0 empty
+
+Vtable for Usable
+Usable::vtable for Usable: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& typeinfo for Usable)
+
+VTT for Usable
+Usable::VTT for Usable: 1u entries
+0     ((& Usable::vtable for Usable) + 12u)
+
+Class Usable
+   size=4 align=4
+   base size=4 base align=4
+Usable (0x0xb71a1348) 0 nearly-empty
+    vptridx=0u vptr=((& Usable::vtable for Usable) + 12u)
+  Usable_lock (0x0xb725e038) 0 empty virtual
+      vbaseoffset=-12
+
+Vtable for DD
+DD::vtable for DD: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& typeinfo for DD)
+
+Construction vtable for Usable (0x0xb71a1564 instance) in DD
+DD::construction vtable for Usable-in-DD: 3u entries
+0     0u
+4     (int (*)(...))0
+8     (int (*)(...))(& typeinfo for Usable)
+
+VTT for DD
+DD::VTT for DD: 2u entries
+0     ((& DD::vtable for DD) + 12u)
+4     ((& DD::construction vtable for Usable-in-DD) + 12u)
+
+Class DD
+   size=4 align=4
+   base size=4 base align=4
+DD (0x0xb71a1528) 0 nearly-empty
+    vptridx=0u vptr=((& DD::vtable for DD) + 12u)
+  Usable (0x0xb71a1564) 0 nearly-empty
+      primary-for DD (0x0xb71a1528)
+      subvttidx=4u
+    Usable_lock (0x0xb725e070) 0 empty virtual
+        vbaseoffset=-12
+
