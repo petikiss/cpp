@@ -36,6 +36,8 @@ class CondimentDecorator : public Beverage
 {
   public:
     int cost() = 0;
+  private:
+    Beverage b;
 };
 
 
