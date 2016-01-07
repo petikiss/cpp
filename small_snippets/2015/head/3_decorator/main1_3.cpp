@@ -17,7 +17,7 @@ class DarkRoast : public Beverage
   public:
     int cost()
     {
-        return 10;
+        return 14;
     }
 };
 
@@ -36,22 +36,30 @@ class CondimentDecorator : public Beverage
 {
   public:
     int cost() = 0;
-  private:
-    Beverage b;
+  protected:
+    Beverage* mBeverage;  // has-a relation!!!!!
 };
 
 
 class Milk : public CondimentDecorator
 {
   public:
-    int cost() {}
+    Milk(Beverage* b)
+    {
+        mBeverage = b;
+    }
+    int cost() {return mBeverage->cost() + 3;}
 };
 
 
 class Soy : public CondimentDecorator
 {
   public:
-    int cost() {}
+    Soy(Beverage* b)
+    {
+        mBeverage = b;
+    }
+    int cost() {return mBeverage->cost() + 2;}
 };
 
 
@@ -60,10 +68,12 @@ class Soy : public CondimentDecorator
 
 int main()
 {
-    DarkRoast dr;
-    Espresso e;
+    Espresso*  e = new Espresso();
+    Beverage* espressoWithMilk = new Milk(e);
+    std::cout << "Espresso with milk cost: " << espressoWithMilk->cost() << std::endl;
 
 
-    // std::cout << "DarkRoast cost: " << dr.cost() << std::endl;
-    // std::cout << "Espresso cost: " << e.cost() << std::endl;
+    DarkRoast* dr = new DarkRoast();
+    Beverage* darkRoastWithSoyAndDoubbleMilk = new Milk(new Milk( new Soy(dr)));
+    std::cout << "Dark Roast with Soy and doubble milk cost: " << darkRoastWithSoyAndDoubbleMilk->cost() << std::endl;
 }
