@@ -1,16 +1,16 @@
 #include <string>
 #include <iostream>
 
+
 class Beverage
 {
   public:
     Beverage() {}
-    std::string getDescription();
+    std::string getDescription() {return "";}
     virtual int cost() = 0;
   private:
     std::string description;
 };
-
 
 
 class DarkRoast : public Beverage

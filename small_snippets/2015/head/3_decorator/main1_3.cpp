@@ -68,12 +68,12 @@ class Soy : public CondimentDecorator
 
 int main()
 {
-    Espresso*  e = new Espresso();
+    Beverage*  e = new Espresso();
     Beverage* espressoWithMilk = new Milk(e);
     std::cout << "Espresso with milk cost: " << espressoWithMilk->cost() << std::endl;
 
 
-    DarkRoast* dr = new DarkRoast();
+    Beverage* dr = new DarkRoast();
     Beverage* darkRoastWithSoyAndDoubbleMilk = new Milk(new Milk( new Soy(dr)));
     std::cout << "Dark Roast with Soy and doubble milk cost: " << darkRoastWithSoyAndDoubbleMilk->cost() << std::endl;
 }
