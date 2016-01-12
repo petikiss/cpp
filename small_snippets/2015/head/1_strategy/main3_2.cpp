@@ -35,7 +35,7 @@ class Duck
    void performFly() { flyBehaviour->fly(); /*delegate the behaviour*/ }
    void setFlyBehaviour(FlyBehaviour* f) { flyBehaviour = f; /* change the behaviour at runtime*/}
   protected:
-   FlyBehaviour * flyBehaviour; // DELEGATE the flying behaviour (interface type, not a concrete class implementation)
+   FlyBehaviour* flyBehaviour; // DELEGATE the flying behaviour (interface type, not a concrete class implementation)
 };
 
 
@@ -73,5 +73,6 @@ class WoodDuck : public Duck
 int main()
 {
    MallardDuck duck;
+
    duck.performFly();
 }
