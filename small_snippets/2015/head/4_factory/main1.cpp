@@ -42,6 +42,8 @@ class PizzaShop
       pizza->prepare();
       pizza->bake();
       pizza->cut();
+
+      return pizza;
    }
   private:
 };

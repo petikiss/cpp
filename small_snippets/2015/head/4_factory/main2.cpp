@@ -27,9 +27,10 @@ class GreekPizza : public Pizza
 // Now the changing code is here!
 class SimplePizzaFactory
 {
+  public:
    Pizza* createPizza(std::string type)
    {
-      Pizza* pizza;
+      Pizza* pizza = NULL;
       if (type == "cheese")
       {
          pizza = new CheesePizza();
@@ -38,6 +39,8 @@ class SimplePizzaFactory
       {
          pizza = new GreekPizza();
       }
+
+      return pizza;
    }
 };
 
@@ -47,26 +50,28 @@ class SimplePizzaFactory
 class PizzaShop
 {
   public:
-   PizzaShop(std::string factory) : mFactory(factory) {}
+   PizzaShop(SimplePizzaFactory* factory) : mFactory(factory) {}
    Pizza* orderPizza(std::string type)
    {
 
-      mFactory.createPizza(type);
+      Pizza* pizza = mFactory->createPizza(type);
 
       pizza->prepare();
       pizza->bake();
       pizza->cut();
+
+      return pizza;
    }
   private:
-   SimplePizzaFactory mFactory;  // composition!!!!
+   SimplePizzaFactory* mFactory;  // composition!!!!
 };
 
 
 
 int main()
 {
-   SimplePizzaFactory factory;
-   PizzaShop shop(factory);
+    SimplePizzaFactory* factory = new SimplePizzaFactory();
+    PizzaShop shop(factory);
 
-   shop.orderPizza("cheese");
+    shop.orderPizza("cheese");
 }
