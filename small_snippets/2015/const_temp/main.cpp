@@ -9,8 +9,8 @@ int main()
     cout << "c erteke: " << c << endl;
 
 
-    //d = 2012; //Fordítási hiba, ahogy vártam...
-    c = 2012; // simán fordul...NEM ahogy vártam :D
+    //d = 2012; //Fordíaási hi.
+    c = 2012;
 
     cout << "c erteke: " << c << endl; // kimenet 2012
     cout << "d erteke: " << d << endl; // kimenet 2004
