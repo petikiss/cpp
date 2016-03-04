@@ -1,6 +1,6 @@
 #include <iostream>
 
-// Principal: Program to an int-erface not an implementation
+// Principal: Program to an interface not an implementation
 
 
 
@@ -8,7 +8,7 @@
 class FlyBehaviour
 {
   public:
-   virtual void fly() {/* implement default fly behaviour */}
+    virtual void fly() =0; //{/* implement default fly behaviour */}
 };
 
 
@@ -34,7 +34,7 @@ class Duck
    virtual void display() = 0;
    void performFly() { flyBehaviour->fly(); /*delegate the behaviour*/ }
    void setFlyBehaviour(FlyBehaviour* f) { flyBehaviour = f; /* change the behaviour at runtime*/}
-  protected:
+  protected: // private:
    FlyBehaviour* flyBehaviour; // DELEGATE the flying behaviour (interface type, not a concrete class implementation)
 };
 
@@ -45,6 +45,7 @@ class MallardDuck : public Duck
    MallardDuck()
    {
       flyBehaviour = new FlyWithWings(); // NOT program to an implementation: this is concrete implementation :(
+      // setFlyBehaviour(new FlyWithWings() )!!!
    }
    void display() {}
 };
