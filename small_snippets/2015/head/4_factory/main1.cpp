@@ -54,5 +54,5 @@ int main()
 {
    PizzaShop shop;
 
-   shop.orderPizza("cheese");
+   Pizza* pizza = shop.orderPizza("cheese");
 }

@@ -1,4 +1,6 @@
-// Simple Factory - this is NOT a Design Pattern but az idom
+// Simple Factory - this is NOT a Design Pattern but az idom ...
+// .. for every new subclass of Product, you have to edit the "if" statement ..
+
 
 #include <string>
 #include <iostream>

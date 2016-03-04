@@ -1,5 +1,4 @@
 // Factory method!
-// page 129
 
 #include <string>
 #include <iostream>
@@ -32,15 +31,12 @@ class NyGreekPizza : public Pizza
 };
 
 
-
-
 class PizzaShop
 {
   public:
    PizzaShop() {}
    Pizza* orderPizza(std::string type)
    {
-
       Pizza* pizza = createPizza(type);
 
       pizza->prepare();
@@ -57,22 +53,25 @@ class PizzaShop
 };
 
 
-// Allow the sub-classes to decide about the style of the pizza!
+// Let the sub-classes to decide about the style of the pizza!!!!
 class NewYorkPizzaShop : public PizzaShop
 {
   public:
-   Pizza* createPizza(std::string type)
-   {
-      Pizza* pizza;
-      if (type == "cheese")
-      {
-         pizza = new NyCheesePizza();
-      }
-      else if (type == "greek")
-      {
-         pizza = new NyGreekPizza();
-      }
-   }
+    // Abstract Factory Method
+    Pizza* createPizza(std::string type)
+    {
+        Pizza* pizza = NULL;
+        if (type == "cheese")
+        {
+            pizza = new NyCheesePizza();
+        }
+        else if (type == "greek")
+        {
+            pizza = new NyGreekPizza();
+        }
+
+        return pizza;
+    }
 };
 
 class ChichagoPizzaShop : public PizzaShop
@@ -80,7 +79,7 @@ class ChichagoPizzaShop : public PizzaShop
   public:
    Pizza* createPizza(std::string type)
    {
-      Pizza* pizza;
+      Pizza* pizza = NULL;
       if (type == "cheese")
       {
          pizza = new ChichagoCheesePizza();
@@ -89,6 +88,8 @@ class ChichagoPizzaShop : public PizzaShop
       {
          pizza = new ChichagoGreekPizza();
       }
+
+      return pizza;
    }
 };
 
@@ -97,5 +98,5 @@ int main()
 {
    PizzaShop* chichagoShop = new ChichagoPizzaShop();
 
-   chichagoShop->orderPizza("cheese");
+   Pizza *pizza = chichagoShop->orderPizza("cheese");
 }

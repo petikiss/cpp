@@ -14,24 +14,22 @@ class Pizza
 };
 
 
-class NyStyleCheesePizza : public Pizza
+class ChichagoStyleGreekPizza : public Pizza
 {
 };
 
+class ChichagoStyleCheesePizza : public Pizza
+{
+};
+
+class NyStyleCheesePizza : public Pizza
+{
+};
 
 class NyStyleGreekPizza : public Pizza
 {
 };
 
-
-class ChichagoStyleGreekPizza : public Pizza
-{
-};
-
-
-class ChichagoStyleCheesePizza : public Pizza
-{
-};
 
 // Not only the PizzaShop could use this class!
 class SimplePizzaFactory
@@ -84,6 +82,7 @@ class PizzaShop
     virtual Pizza* orderPizza(std::string type) = 0;
 };
 
+
 // 1 CLIENT CODE, which use the SimplePizzaFactory
 class NyPizzaShop : public PizzaShop
 {
@@ -94,7 +93,7 @@ class NyPizzaShop : public PizzaShop
 
       Pizza* pizza = mFactory->createPizza(type);
 
-      // check NULL ...
+      // check NULL ... blablabla.... :)
       pizza->prepare();
       pizza->bake();
       pizza->cut();
@@ -106,6 +105,7 @@ class NyPizzaShop : public PizzaShop
 };
 
 
+// 2 CLIENT CODE, which use the SimplePizzaFactory
 // Problem:
 // What happens, if new "ChichagoShop" open, and do the things differently?
 // Ex:
@@ -121,7 +121,8 @@ class ChichagoPizzaShop : public PizzaShop
       // check NULL ...
       pizza->prepare();
       pizza->bake();
-      // FORGET TO CUT????? hmmm... We need control! We need to handle "Shop and Pizza" creation together!
+      // FORGET TO CUT????? hmmm...
+      // We need control! We need to handle "Shop and Pizza" creation together!
 
       return pizza;
    }
