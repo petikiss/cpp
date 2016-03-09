@@ -45,7 +45,7 @@ class DepententPizzaShop
         {
             if (type == "cheese")
             {
-                // if ChichagoStyleCheesePizza  modified
+                // if ChichagoStyleCheesePizza  modified (ex: new parameter added)
                 // we may  modify the DepententPizzaShop ...
                 // reducing depending to concrete classis is "good" -> formal name: DIP
                 pizza = new ChichagoStyleCheesePizza();

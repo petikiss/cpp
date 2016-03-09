@@ -30,7 +30,7 @@ class GreekPizza : public Pizza
 class SimplePizzaFactory
 {
   public:
-   Pizza* createPizza(std::string type)
+   Pizza* createPizza(std::string type) // this could be defined as "static" -> static factory
    {
       Pizza* pizza = NULL;
       if (type == "cheese")
@@ -68,7 +68,15 @@ class PizzaShop
    SimplePizzaFactory* mFactory;  // composition!!!!
 };
 
-
+// another CLIETN who uses PizzaShop
+// if new Pizza type is introduced, only the Factory will be modified
+class HomeDeliveryService
+{
+  public:
+    // orderPizza()
+  private:
+    // SimplePizzaFactory
+};
 
 int main()
 {

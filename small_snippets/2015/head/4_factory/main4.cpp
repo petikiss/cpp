@@ -31,10 +31,13 @@ class NyGreekPizza : public Pizza
 };
 
 
+// abstract creator class
 class PizzaShop
 {
   public:
    PizzaShop() {}
+    // orderPizza does a lot of things with Pizza, but it is abstract, so this function
+    // doesnt know the exact type -> so they are decoupled
    Pizza* orderPizza(std::string type)
    {
       Pizza* pizza = createPizza(type);
