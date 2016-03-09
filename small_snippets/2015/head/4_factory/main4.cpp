@@ -13,21 +13,34 @@ class Pizza
   private:
 };
 
-
+// the only differences between concrete pizzas is the different ingredients!
+// the pizzas are made just the same (name, dough, sauce)
 class ChichagoCheesePizza : public Pizza
 {
+    // name = "Chichago style pizza with cheese";
+    // dough = "Thick Crust Dough";
+    // sauce = "Plum Tomato Sauce";
 };
 
 class ChichagoGreekPizza : public Pizza
 {
+    // name =
+    // dough =
+    // sauce =
 };
 
 class NyCheesePizza : public Pizza
 {
+    // name = "Ny style pizza with cheese";
+    // dough = "Thin Crust Dough";
+    // sauce = "Mariana Sauce";
 };
 
 class NyGreekPizza : public Pizza
 {
+    // name =
+    // dough =
+    // sauce =
 };
 
 

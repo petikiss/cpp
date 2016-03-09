@@ -64,6 +64,48 @@ class ChichagoPizzaIngredientFactory : public PizzaIngredientFactory
     }
 };
 
+// ----------------------------------------------------------------------------------------
+
+
+
+class Pizza
+{
+  public:
+    virtual void prepare() = 0;
+    virtual void bake() = 0;
+    virtual void cut() = 0;
+    virtual void box() = 0;
+
+//  public:
+    Dough mDough;
+    Sauce mSauce;
+    Cheese mCheese;
+};
+
+
+// we dont need two different cheese pizza (ChichagoCheesePizza, NyCheesePizza)
+// the IngredientFactory will handle the regional differencies
+class CheesePizza : public Pizza
+{
+  public:
+    CheesePizza(PizzaIngredientFactory* pizzaIngredientFactory) :
+                                        mPizzaIngredientFactory(pizzaIngredientFactory) {}
+
+    void prepare()
+    {
+    }
+
+    void bake() {}
+    void cut()  {}
+    void box()  {}
+  private:
+    PizzaIngredientFactory* mPizzaIngredientFactory;
+};
+
+
+// ----------------------------------------------------------------------------------------
+
+
 
 
 
