@@ -1,9 +1,11 @@
 // Factory method!
+// decoules the client code (who use the factory method)  in the superclass from the
+// object creation code in the subclass
 
 #include <string>
 #include <iostream>
 
-
+// Product
 class Pizza
 {
   public:
@@ -13,6 +15,8 @@ class Pizza
   private:
 };
 
+
+// Concrete Product
 // the only differences between concrete pizzas is the different ingredients!
 // the pizzas are made just the same (name, dough, sauce)
 class ChichagoCheesePizza : public Pizza
@@ -53,6 +57,7 @@ class PizzaShop
     // doesnt know the exact type -> so they are decoupled
    Pizza* orderPizza(std::string type)
    {
+      // client code in the super class should knows only the abstract type
       Pizza* pizza = createPizza(type);
 
       pizza->prepare();
