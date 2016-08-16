@@ -1,0 +1,1 @@
+cmd_/home/marci/github/cpp/kernel/helloword/hello.ko := ld -r -m elf_i386 -T ./scripts/module-common.lds --build-id  -o /home/marci/github/cpp/kernel/helloword/hello.ko /home/marci/github/cpp/kernel/helloword/hello.o /home/marci/github/cpp/kernel/helloword/hello.mod.o
