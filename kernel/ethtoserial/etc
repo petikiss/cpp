@@ -1,1 +1,3 @@
 https://austinmarton.wordpress.com/2011/09/14/sending-raw-ethernet-packets-from-a-specific-interface-in-c-on-linux/
+sudo ethtool -S enp0s3
+
