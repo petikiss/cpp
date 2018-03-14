@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1518370257 source:c:\users\emrtsis\desktop\test\2 - memory\cppcheck\1_auto_ptr_cppcheck\main.cpp
+	<iostream>
+	<memory>
+	<string>
+

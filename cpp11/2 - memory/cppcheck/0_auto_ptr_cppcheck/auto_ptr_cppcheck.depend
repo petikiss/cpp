@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1518370000 source:c:\users\emrtsis\desktop\test\2 - memory\cppcheck\auto_ptr_cppcheck\main.cpp
+	<iostream>
+	<memory>
+
+1518371314 source:c:\users\emrtsis\desktop\test\2 - memory\cppcheck\0_auto_ptr_cppcheck\main.cpp
+	<iostream>
+	<vector>
+	<list>
+	<algorithm>
+	<memory>
+	<iterator>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1520326598 source:c:\users\emrtsis\desktop\test\2 - memory\cppcheck\binary_tree\main.cpp
+	<memory>
+	<iostream>
+
