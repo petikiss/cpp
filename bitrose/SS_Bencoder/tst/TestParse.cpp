@@ -48,9 +48,10 @@ return false;
 }
 */
 
-bool contains(const Bencoder::ListPtr list, const Bencoder::AnyType& item)
-{
-     std::list<Bencoder::AnyTypePtr> l = list->getValue();
+//bool contains(const Bencoder::ListPtr list, const Bencoder::AnyType& item)
+//{
+/*
+    std::list<Bencoder::AnyTypePtr> l = list->getValue();
 
     for(std::list<Bencoder::AnyTypePtr>::const_iterator it = l.begin();
         it != l.end();
@@ -63,7 +64,9 @@ bool contains(const Bencoder::ListPtr list, const Bencoder::AnyType& item)
     }
 
      return false;
-}
+
+     */
+//}
 
 
 // // print a list
@@ -90,21 +93,21 @@ BOOST_FIXTURE_TEST_CASE(TestIsDigit, fixture)
 
     Bencoder::Bencoder bc(m_logger);
     bool digit;
-    digit = bc.isDigit('0');
-    BOOST_CHECK(digit);
+//    digit = bc.isDigit('0');
+//    BOOST_CHECK(digit);
 
-    digit = bc.isDigit('5');
-    BOOST_CHECK(digit);
+    //digit = bc.isDigit('5');
+    //BOOST_CHECK(digit);
 
-    digit = bc.isDigit('9');
-    BOOST_CHECK(digit);
+//    digit = bc.isDigit('9');
+    //BOOST_CHECK(digit);
 
-    digit = bc.isDigit('a');
-    BOOST_CHECK(!digit);
+    //digit = bc.isDigit('a');
+    //BOOST_CHECK(!digit);
 } // TestIsDigit
 
 
-
+/*
 BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
 {
     dumpHeader("TestParseString");
@@ -121,6 +124,8 @@ BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
     unsigned int pos3 = 5;
     BOOST_CHECK_EQUAL(bc.parseString("xxxxx100:aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee",pos3)->getValue(),"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee");
     BOOST_CHECK_EQUAL(pos3, 109);
+
+
 }
 
 
@@ -129,18 +134,22 @@ BOOST_FIXTURE_TEST_CASE(TestParseThreeString, fixture)
 {
     dumpHeader("Parse string three times");
 
+
     Bencoder::Bencoder bc(m_logger);
     unsigned int pos = 0;
     std::string needParse = "2:aa12:asdfasdfasdf5:12345";
     BOOST_CHECK_EQUAL(bc.parseString(needParse,pos)->getValue(),"aa");
     BOOST_CHECK_EQUAL(bc.parseString(needParse,pos)->getValue(),"asdfasdfasdf");
     BOOST_CHECK_EQUAL(bc.parseString(needParse,pos)->getValue(),"12345");
+
+
 }
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseInteger, fixture)
 {
     dumpHeader("TestParseInteger");
+
 
     Bencoder::Bencoder bc(m_logger);
     unsigned int pos1 = 0;
@@ -158,12 +167,15 @@ BOOST_FIXTURE_TEST_CASE(TestParseInteger, fixture)
     unsigned int pos4 = 0;
     BOOST_CHECK_EQUAL(bc.parseInteger("i0e",pos4)->getValue(), 0);
     BOOST_CHECK_EQUAL(pos4, 3);
+
+
 }
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseFourInteger, fixture)
 {
     dumpHeader("Parse integer four times");
+
 
     Bencoder::Bencoder bc(m_logger);
     unsigned int pos = 0;
@@ -173,12 +185,15 @@ BOOST_FIXTURE_TEST_CASE(TestParseFourInteger, fixture)
     BOOST_CHECK_EQUAL(bc.parseInteger(needParse, pos)->getValue(), 54321);
     BOOST_CHECK_EQUAL(bc.parseInteger(needParse, pos)->getValue(), 0);
     BOOST_CHECK_EQUAL(bc.parseInteger(needParse, pos)->getValue(), -500);
+
+
 }
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseList1, fixture)
 {
     dumpHeader("Parse string with only strings");
+
 
     Bencoder::Bencoder bc(m_logger);
 
@@ -191,12 +206,14 @@ BOOST_FIXTURE_TEST_CASE(TestParseList1, fixture)
     BOOST_CHECK(contains(list, Bencoder::String("foo")));
     BOOST_CHECK(contains(list, Bencoder::String("aaaa")));
     BOOST_CHECK(contains(list, Bencoder::String("bbbbbbb")));
+
 }
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseList2, fixture)
 {
     dumpHeader("Parse with only integers");
+
 
     Bencoder::Bencoder bc(m_logger);
 
@@ -209,12 +226,14 @@ BOOST_FIXTURE_TEST_CASE(TestParseList2, fixture)
     BOOST_CHECK(contains(list, Bencoder::Integer(12345)));
     BOOST_CHECK(contains(list, Bencoder::Integer(-500)));
     BOOST_CHECK(contains(list, Bencoder::Integer(0)));
-}
+
+    }
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseList3, fixture)
 {
     dumpHeader("Parse with string AND integers");
+
 
     Bencoder::Bencoder bc(m_logger);
 
@@ -228,6 +247,7 @@ BOOST_FIXTURE_TEST_CASE(TestParseList3, fixture)
     BOOST_CHECK(contains(list, Bencoder::Integer(-300)));
     BOOST_CHECK(contains(list, Bencoder::String("asdf")));
     BOOST_CHECK(contains(list, Bencoder::String("asdfasdfas")));
+
 }
 
 
@@ -244,7 +264,7 @@ BOOST_FIXTURE_TEST_CASE(TestParseList4, fixture)
 
 
 
-/*
+
 BOOST_FIXTURE_TEST_CASE(TestParseInteger, fixture)
 {
     dumpHeader("TestParseInteger()");
@@ -273,12 +293,15 @@ BOOST_FIXTURE_TEST_CASE(TestParseInteger, fixture)
     BOOST_CHECK_EQUAL(list.back(),"0");
 
     printList(list);
+
+
 } // TestParseInteger
 
 
 BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
 {
   dumpHeader("TestParseString()");
+
 
   Bencoder::Bencoder bc(m_logger);
   std::list<std::string> list;
@@ -309,6 +332,7 @@ BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
   BOOST_CHECK_EQUAL(list.back(),"publisher.location");
 
   printList(list);
+
 } // TestParseString
 
 
@@ -364,6 +388,8 @@ BOOST_FIXTURE_TEST_CASE(TestParseList, fixture)
 //     TS_ASSERT_EQUALS(*it, 2);
 //     TS_ASSERT(contains(*it,"spam"));
 //     TS_ASSERT(contains(*it,"eggs"));
-} // TestParseList
 
+} // TestParseList
 */
+
+

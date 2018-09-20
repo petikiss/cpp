@@ -1,4 +1,4 @@
-/*
+    /*
 * BitRose simple torrent client
 *
 * Copyright (c) 2012 Marton Siska
@@ -25,7 +25,7 @@
 #include <list>
 #include <map>
 
-#include <bencoder/Types.hpp>
+// #include <bencoder/Types.hpp>
 #include <logger/Logger.hpp>
 
 
@@ -58,12 +58,12 @@ class Bencoder
     void decode(const std::string& str);
 
 
-    StringPtr parseString(const std::string& str, unsigned int& pos);
-    IntegerPtr parseInteger(const std::string& str, unsigned int& pos);
-    ListPtr parseList(const std::string& str, unsigned int& pos);
+    //std::string parseString(const std::string& str, unsigned int& pos);
+    //int parseInteger(const std::string& str, unsigned int& pos);
+    //std::list<std::string> parseList(const std::string& str, unsigned int& pos);
 
 
-    void parseNextType(const std::string& str, unsigned int& pos, ListPtr list);
+    // void parseNextType(const std::string& str, unsigned int& pos, ListPtr list);
   private:
     // std::list< std::list< AnyType > > m_lists;
     // std::list< std::map<std::string, AnyType> > m_maps;
