@@ -1,7 +1,7 @@
 /*
 * BitRose simple torrent client
 *
-* Copyright (c) 2012 Marton Siska
+* Copyright (c) 2018 Marton S.
 *
 * This library is free software; you can redistribute it and/or
 * modify it under the terms of the GNU Lesser General Public
@@ -19,89 +19,103 @@
 */
 
 #include <bencoder/Bencoder.hpp>
-#include <utils/StringUtils.hpp>
 
-
-#include <assert.h>
-#include <iostream>
 
 namespace Bencoder
 {
 
-
-Bencoder::Bencoder(logger::Logger* logger)
+Tokens::Bencode*
+Bencoder::readBencode(std::ifstream& inp)
 {
-  m_logger = logger;
+    std::cout << "readBencode" << std::endl;
+
+    Tokens::Bencode* bencode;
+
+    // check the next character without removing from the stream
+    char ch = inp.peek();
+    if (ch == 'd')
+    {
+        bencode = readDict(inp);
+    }
+    else if(ch == 'l')
+    {
+        assert("Not implemented LIST" == "0");
+    }
+    else if (ch == 'i')
+    {
+        assert("Not implemented INTEGER" == "0");
+    }
+    else if ( isDigit(ch))
+    {
+        bencode = readStr(inp);
+    }
+    else
+    {
+        assert(ch == 'e');
+    }
+
+    return bencode;
 }
 
 
-Bencoder::~Bencoder()
+Tokens::Str*
+Bencoder::readStr(std::ifstream& inp)
 {
+    std::cout << "Read Str" << std::endl;
+
+    // read string length at first
+    std::string length = "";
+    char ch = inp.get();
+    std::cout << "CH: " << ch << std::endl;
+    while (isDigit(ch))
+    {
+        length += ch;
+        ch = inp.get();
+    }
+
+    assert(ch == ':');
+
+    std::string str = "";
+    for (int i = 0; i < atoi(length.c_str()); ++i)
+    {
+        ch = inp.get();
+        str += ch;
+    }
+
+
+    std::cout << "str len: " << length << std::endl;
+    std::cout << "str: " << str << std::endl;
+
+    return new Tokens::Str(str);
 }
 
 
-bool Bencoder::isDigit(char ch)
+Tokens::Dict*
+Bencoder::readDict(std::ifstream& inp)
 {
-  m_logger->log(logger::Logger::FINE, "Bencoder::isDigit()");
+    std::cout << "Read Dict\n";
+
+    // remove 'd' character
+    assert(inp.get() == 'd');
+
+    Tokens::Dict* dict = new Tokens::Dict();
+
+    Tokens::Str* str = readStr(inp);
+    Tokens::Bencode* bencode = readBencode(inp);
+
+    dict->mDict[str] = bencode;
+
+    return dict;
+}
+
+
+void
+Bencoder::createList(Tokens::Bencode* bencode)
+{
+    // remove 'd' character
+//    assert(inp.get() == 'l');
 
 }
 
 
-void Bencoder::decode(const std::string& str)
-{
-  m_logger->log(logger::Logger::FINE, "Bencoder::decode()");
-
-  m_logger->begin(logger::Logger::DEBUG);
-  m_logger->prop("str", str);
-  m_logger->end("Bencoder::decode()");
-
-
 }
-
-
-/*
-std::string Bencoder::parseString(const std::string& str, unsigned int& pos)
-{
-    m_logger->log(logger::Logger::FINE, "Bencoder::parseString()");
-
-    m_logger->begin(logger::Logger::DEBUG);
-//    m_logger->prop("pos", pos);
-    m_logger->prop("str[pos]", str[pos]);
-    m_logger->end("Bencoder::parseString()");
-
-}
-
-
-int Bencoder::parseInteger(const std::string& str, unsigned int& pos)
-{
-    m_logger->log(logger::Logger::FINE, "Bencoder::parseInteger()");
-
-    assert( str[pos] == 'i' );
-
-}
-
-
-void Bencoder::parseNextType(const std::string& str, unsigned int& pos, ListPtr list)
-{
-    m_logger->log(logger::Logger::FINE, "Bencoder::parseNextType()");
-
-}
-
-
-std::list<std::string> Bencoder::parseList(const std::string& str, unsigned int& pos)
-{
-    m_logger->log(logger::Logger::FINE, "Bencoder::ParseList()");
-
-    m_logger->begin(logger::Logger::DEBUG);
-    m_logger->prop("str", const_cast<std::string&>(str));
-    m_logger->end("Bencoder::ParseList()");
-
-    assert(str[pos] == 'l');
-
-
-}
-
-*/
-
-
-} // namespace Bencoder
