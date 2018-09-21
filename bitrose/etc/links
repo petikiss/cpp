@@ -1,0 +1,18 @@
+// https://hackage.haskell.org/package/bencoding-0.2.1.0/candidate/docs/Data-BEncode.html#g:3
+// https://en.wikipedia.org/wiki/Bencode
+// https://wiki.theory.org/index.php/BitTorrentSpecification
+// https://chocobo1.github.io/bencode_online/
+
+
+// The Augmented BNF syntax[5] for bencoding format is:
+//
+//    dictionary = "d" 1*(string anytype) "e" ; non-empty dictionary
+//    list       = "l" 1*anytype "e"          ; non-empty list
+//    integer    = "i" signumber "e"
+//    string     = number ":" <number long sequence of any CHAR>
+//    anytype    = dictionary / list / integer / string
+//    signumber  = "-" number / number
+//    number     = 1*DIGIT
+//    CHAR       = %x00-FF                    ; any 8-bit character
+//    DIGIT      = "0" / "1" / "2" / "3" / "4" /
+//                 "5" / "6" / "7" / "8" / "9"
