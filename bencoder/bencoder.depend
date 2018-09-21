@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1537124914 source:c:\users\emrtsis\onedrive - ericsson ab\bencoder\main.cpp
+	"Tokens.hh"
+	<fstream>
+	<iostream>
+	<assert.h>
+
+1537125098 c:\users\emrtsis\onedrive - ericsson ab\bencoder\tokens.hh
+	<string>
+	<map>
+	<list>
+	<iostream>
+
+1537103478 source:c:\users\emrtsis\onedrive - ericsson ab\bencoder\tokens.cpp
+	"Tokens.hh"
+
