@@ -16,10 +16,10 @@
 
 struct fixture
 {
-    fixture()  { BOOST_TEST_MESSAGE( "setup fixture" ); m_logger = new logger::Logger();  }
-    ~fixture()       { BOOST_TEST_MESSAGE( "teardown fixture" ); delete m_logger;}
+    fixture()  { BOOST_TEST_MESSAGE( "setup fixture" ); mLogger = new logger::Logger();  }
+    ~fixture()       { BOOST_TEST_MESSAGE( "teardown fixture" ); delete mLogger;}
 
-    logger::Logger* m_logger;
+    logger::Logger* mLogger;
 };
 
 
@@ -91,7 +91,7 @@ BOOST_FIXTURE_TEST_CASE(TestIsDigit, fixture)
 {
     dumpHeader("TestIsDigit()");
 
-    Bencoder::Bencoder bc(m_logger);
+    Bencoder::Bencoder bc(mLogger);
 //    bool digit;
 //    digit = bc.isDigit('0');
 //    BOOST_CHECK(digit);

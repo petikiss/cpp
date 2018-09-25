@@ -47,12 +47,6 @@ class Bencoder
 
    void createList(Tokens::Bencode* bencode);
 
-    bool isDigit( char c )
-    {
-       return ( '0' <= c && c <= '9' );
-    }
-
-
   private:
     logger::Logger* mLogger;
 

@@ -19,6 +19,7 @@
 */
 
 #include <bencoder/Bencoder.hh>
+#include <utils/StringUtils.hh>
 
 #include <fstream>
 #include <iostream>
@@ -57,7 +58,7 @@ Bencoder::readBencode(std::ifstream& inp)
     {
         assert("Not implemented INTEGER" == "0");
     }
-    else if ( isDigit(ch))
+    else if ( utils::StringUtils::isDigit(ch))
     {
         bencode = readStr(inp);
     }
@@ -79,7 +80,7 @@ Bencoder::readStr(std::ifstream& inp)
     std::string length = "";
     char ch = inp.get();
     std::cout << "CH: " << ch << std::endl;
-    while (isDigit(ch))
+    while (utils::StringUtils::isDigit(ch))
     {
         length += ch;
         ch = inp.get();
@@ -125,9 +126,7 @@ void
 Bencoder::createList(Tokens::Bencode* bencode)
 {
     // remove 'd' character
-//    assert(inp.get() == 'l');
-
+    // assert(inp.get() == 'l');
 }
-
 
 }
