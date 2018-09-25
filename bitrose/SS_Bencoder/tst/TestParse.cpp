@@ -4,7 +4,7 @@
 #define protected public
 
 #include <logger/Logger.hpp>
-#include <bencoder/Bencoder.hpp>
+#include <bencoder/Bencoder.hh>
 
 #include <list>
 #include <iostream>
@@ -91,8 +91,8 @@ BOOST_FIXTURE_TEST_CASE(TestIsDigit, fixture)
 {
     dumpHeader("TestIsDigit()");
 
-    Bencoder::Bencoder bc(m_logger);
-    bool digit;
+    //Bencoder::Bencoder bc(m_logger);
+//    bool digit;
 //    digit = bc.isDigit('0');
 //    BOOST_CHECK(digit);
 
