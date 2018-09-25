@@ -6,9 +6,7 @@
 #include <logger/Logger.hpp>
 #include <bencoder/Bencoder.hh>
 
-#include <list>
-#include <iostream>
-
+#include <sstream>
 
 // I would use BOOST_CHECK or BOOST_CHECK_EQUAL before the BOOST_REQUIRE.
 // BOOST_CHECK" just reports the error and continues, so the test fails, but you get to see all the wrong values.
@@ -87,11 +85,20 @@ return false;
 // -------------------------TESTCASES---------------------------------------------------------------------------------------
 
 
-BOOST_FIXTURE_TEST_CASE(TestIsDigit, fixture)
+BOOST_FIXTURE_TEST_CASE(TestReadString, fixture)
 {
-    dumpHeader("TestIsDigit()");
+    dumpHeader("TestReadString()");
 
-    Bencoder::Bencoder bc(mLogger);
+    Bencoder::Bencoder bencoder(mLogger);
+
+    std::string stringvalues = "125 320 512 750 333";
+//    std::istringstream iss (stringvalues);
+
+
+    //  bencoder.readStr(iss);
+
+
+
 //    bool digit;
 //    digit = bc.isDigit('0');
 //    BOOST_CHECK(digit);
