@@ -27,6 +27,9 @@
 #include <bencoder/Tokens.hh>
 
 
+//class ifstream;
+
+
 namespace Bencoder
 {
 
@@ -39,9 +42,10 @@ class Bencoder
    Tokens::Bencode* readBencode(std::ifstream& inp);
 
 
-   Tokens::Str* Bencoder::readStr(std::ifstream& inp);
-   Tokens::Dict* readDict(std::ifstream& inp)
-   void Bencoder::createList(Tokens::Bencode* bencode)
+   Tokens::Str* readStr(std::ifstream& inp);
+   Tokens::Dict* readDict(std::ifstream& inp);
+
+   void createList(Tokens::Bencode* bencode);
 
     bool isDigit( char c )
     {

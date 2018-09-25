@@ -18,8 +18,10 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include <bencoder/Bencoder.hpp>
+#include <bencoder/Bencoder.hh>
 
+#include <fstream>
+#include <assert.h>
 
 namespace Bencoder
 {
@@ -29,7 +31,7 @@ Bencoder::readBencode(std::ifstream& inp)
 {
     std::cout << "readBencode" << std::endl;
 
-    Tokens::Bencode* bencode;
+    Tokens::Bencode* bencode = 0;
 
     // check the next character without removing from the stream
     char ch = inp.peek();
