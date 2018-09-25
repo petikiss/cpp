@@ -18,11 +18,12 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include <utils/StringUtils.hpp>
+#include <utils/StringUtils.hh>
 
 #include <sstream>
 
-int utils::StringUtils::stringToInt(std::string str)
+int
+utils::StringUtils::stringToInt(std::string str)
 {
   int result;
   std::stringstream ss;
@@ -33,7 +34,8 @@ int utils::StringUtils::stringToInt(std::string str)
 }
 
 
-std::string utils::StringUtils::intToString(int a)
+std::string
+utils::StringUtils::intToString(int a)
 {
   std::stringstream ss;
   ss << a;
@@ -41,8 +43,17 @@ std::string utils::StringUtils::intToString(int a)
   return ss.str();
 }
 
+
 // this function can only convert a number to int!
-int utils::StringUtils::charToInt(char ch)
+int
+utils::StringUtils::charToInt(char ch)
 {
   return stringToInt( std::string(1 ,ch) );
+}
+
+
+bool
+utils::StringUtils::isDigit(char c)
+{
+   return ( '0' <= c && c <= '9' );
 }
