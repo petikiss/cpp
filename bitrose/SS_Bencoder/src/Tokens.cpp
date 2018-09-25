@@ -48,6 +48,11 @@ void Str::print()
    std::cout << mStr;
 }
 
+std::string
+Str::get()
+{
+   return mStr;
+}
 
 void Dict::print()
 {

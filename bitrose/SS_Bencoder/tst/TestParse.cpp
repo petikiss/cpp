@@ -1,12 +1,14 @@
 #include <boost/test/unit_test.hpp>
 
-#define private public
-#define protected public
-
 #include <logger/Logger.hpp>
 #include <bencoder/Bencoder.hh>
+#include <bencoder/Tokens.hh>
 
 #include <sstream>
+#include <fstream>
+
+using namespace Bencoder;
+using namespace Bencoder::Tokens;
 
 // I would use BOOST_CHECK or BOOST_CHECK_EQUAL before the BOOST_REQUIRE.
 // BOOST_CHECK" just reports the error and continues, so the test fails, but you get to see all the wrong values.
@@ -14,10 +16,22 @@
 
 struct fixture
 {
-    fixture()  { BOOST_TEST_MESSAGE( "setup fixture" ); mLogger = new logger::Logger();  }
-    ~fixture()       { BOOST_TEST_MESSAGE( "teardown fixture" ); delete mLogger;}
+   fixture()
+   {
+      BOOST_TEST_MESSAGE( "setup fixture" );
+      mLogger = new logger::Logger();
+      mBencoder = new Bencoder::Bencoder( new logger::Logger() );
+   }
 
-    logger::Logger* mLogger;
+   ~fixture()
+   {
+     BOOST_TEST_MESSAGE( "teardown fixture" );
+     delete mLogger;
+     delete mBencoder;
+   }
+
+   logger::Logger* mLogger;
+   Bencoder::Bencoder* mBencoder;
 };
 
 
@@ -27,91 +41,51 @@ void dumpHeader(std::string text)
   std::cout << "\n\n\n--------| TestParse test " << text << " |" << padding << "\n\n";
 }
 
-/*
-// check weather a list contains the str
-bool contains(std::list<std::string> list, std::string str)
-{
-  // iterate throw the list
-  for(std::list<std::string>::iterator it = list.begin();
-      it != list.end();
-      it++)
-      {
-        if (*it == str)
-        {
-          return true;
-        }
-      }
-
-return false;
-}
-*/
-
-//bool contains(const Bencoder::ListPtr list, const Bencoder::AnyType& item)
-//{
-/*
-    std::list<Bencoder::AnyTypePtr> l = list->getValue();
-
-    for(std::list<Bencoder::AnyTypePtr>::const_iterator it = l.begin();
-        it != l.end();
-        ++it)
-    {
-        if (*(it->get()) == item)
-        {
-            return true;
-        }
-    }
-
-     return false;
-
-     */
-//}
 
 
-// // print a list
-// void printList(std::list<std::string> list)
-// {
-//   std::list<std::string>::iterator it = list.begin();
-
-//   std::cout << "Elements in the list:";
-//   for(std::list<std::string>::iterator it = list.begin();
-//       it != list.end();
-//       it++)
-//       {
-//         std::cout << *it << ",";
-//       }
-//   std::cout << "\n";
-// }
 
 // -------------------------TESTCASES---------------------------------------------------------------------------------------
+
+BOOST_FIXTURE_TEST_CASE(TestReadStringFromFile, fixture)
+{
+    dumpHeader("TestReadStringFromFile()");
+
+    std::ofstream out("string.txt");
+    BOOST_CHECK(!out.fail());
+
+    out << "4:spam";
+    out.close();
+
+    std::ifstream inp("string.txt");
+
+    BOOST_CHECK(!inp.fail());
+
+    Str* str = mBencoder->readStr(inp);
+
+    BOOST_CHECK("spam" == str->get());
+}
 
 
 BOOST_FIXTURE_TEST_CASE(TestReadString, fixture)
 {
     dumpHeader("TestReadString()");
 
-    Bencoder::Bencoder bencoder(mLogger);
+    std::string stringvalues = "4:spam";
+    std::istringstream iss (stringvalues);
 
-    std::string stringvalues = "125 320 512 750 333";
-//    std::istringstream iss (stringvalues);
-
-
-    //  bencoder.readStr(iss);
+    Str* str = mBencoder->readStr(iss);
 
 
+    BOOST_CHECK("spam" == str->get());
+}
 
-//    bool digit;
-//    digit = bc.isDigit('0');
-//    BOOST_CHECK(digit);
 
-    //digit = bc.isDigit('5');
-    //BOOST_CHECK(digit);
+BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
+{
+    dumpHeader("TestReadDict");
 
-//    digit = bc.isDigit('9');
-    //BOOST_CHECK(digit);
 
-    //digit = bc.isDigit('a');
-    //BOOST_CHECK(!digit);
-} // TestIsDigit
+}
 
 
 /*

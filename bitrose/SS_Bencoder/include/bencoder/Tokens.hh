@@ -52,6 +52,7 @@ public:
    ~Str();
    Str(std::string str);
    void print();
+   std::string get();
 //private:
     std::string mStr;
 };
