@@ -18,7 +18,7 @@
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#include "Tokens.hh"
+#include <bencoder/Tokens.hh>
 #include <iostream>
 
 namespace Bencoder
@@ -35,6 +35,9 @@ Str::Str()
 {
 }
 
+Str::~Str()
+{
+}
 
 Str::Str(std::string str) : mStr(str)
 {
@@ -59,6 +62,13 @@ void Dict::print()
    std::cout << std::endl;
 }
 
+Dict::Dict()
+{
+}
+
+Dict::~Dict()
+{
+}
 
 
 }

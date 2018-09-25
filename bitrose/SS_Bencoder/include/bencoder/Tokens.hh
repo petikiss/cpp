@@ -25,7 +25,7 @@
 #include <map>
 #include <list>
 
-#include <iostream>
+
 namespace Bencoder
 {
 namespace Tokens
@@ -49,6 +49,7 @@ class Str : public Bencode
 {
 public:
    Str();
+   ~Str();
    Str(std::string str);
    void print();
 //private:
@@ -58,6 +59,8 @@ public:
 class Dict : public Bencode
 {
 public:
+   Dict();
+   ~Dict();
    void print();
 
 //private:

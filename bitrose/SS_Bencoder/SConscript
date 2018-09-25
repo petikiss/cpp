@@ -6,7 +6,8 @@ Import("env")
 env = env.Clone()
 
 sources = [
-    "Bencoder.cpp"
+    "Bencoder.cpp",
+    "Tokens.cpp"
     ]
 
 # Compile

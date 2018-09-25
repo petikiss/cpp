@@ -21,6 +21,7 @@
 #include <bencoder/Bencoder.hh>
 
 #include <fstream>
+#include <iostream>
 #include <assert.h>
 
 namespace Bencoder
