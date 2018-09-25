@@ -40,7 +40,7 @@ public:
 class Int : public Bencode
 {
 public:
-    void print() {std::cout << mInt;}
+   void print();
 //private:
     int mInt;
 };
@@ -48,9 +48,9 @@ public:
 class Str : public Bencode
 {
 public:
-    Str() {}
-    Str(std::string str) : mStr(str) {}
-    void print() {std::cout << mStr;}
+   Str();
+   Str(std::string str);
+   void print();
 //private:
     std::string mStr;
 };
@@ -58,18 +58,7 @@ public:
 class Dict : public Bencode
 {
 public:
-    void print()
-    {
-        for( auto i : mDict)
-        {
-            std::cout << "{";
-            i.first->print();
-            std::cout << ":";
-            i.second->print();
-            std::cout << "}";
-        }
-        std::cout << std::endl;
-    }
+   void print();
 
 //private:
     std::map<Str*, Bencode*> mDict;
