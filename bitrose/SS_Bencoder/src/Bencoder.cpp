@@ -27,6 +27,15 @@
 namespace Bencoder
 {
 
+Bencoder::Bencoder(logger::Logger* logger) : mLogger(logger)
+{
+}
+
+Bencoder::~Bencoder()
+{
+}
+
+
 Tokens::Bencode*
 Bencoder::readBencode(std::ifstream& inp)
 {

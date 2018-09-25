@@ -54,7 +54,7 @@ class Bencoder
 
 
   private:
-    logger::Logger* m_logger;
+    logger::Logger* mLogger;
 
 
 }; // class Bencoder
