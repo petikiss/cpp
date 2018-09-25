@@ -27,7 +27,7 @@
 #include <bencoder/Tokens.hh>
 
 
-//class ifstream;
+//class istream;
 
 
 namespace Bencoder
@@ -39,11 +39,11 @@ class Bencoder
     Bencoder(logger::Logger* logger);
     ~Bencoder();
 
-   Tokens::Bencode* readBencode(std::ifstream& inp);
+   Tokens::Bencode* readBencode(std::istream& inp);
 
 
-   Tokens::Str* readStr(std::ifstream& inp);
-   Tokens::Dict* readDict(std::ifstream& inp);
+   Tokens::Str* readStr(std::istream& inp);
+   Tokens::Dict* readDict(std::istream& inp);
 
    void createList(Tokens::Bencode* bencode);
 

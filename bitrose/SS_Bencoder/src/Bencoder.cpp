@@ -21,7 +21,7 @@
 #include <bencoder/Bencoder.hh>
 #include <utils/StringUtils.hh>
 
-#include <fstream>
+#include <istream>
 #include <iostream>
 #include <assert.h>
 
@@ -38,7 +38,7 @@ Bencoder::~Bencoder()
 
 
 Tokens::Bencode*
-Bencoder::readBencode(std::ifstream& inp)
+Bencoder::readBencode(std::istream& inp)
 {
     std::cout << "readBencode" << std::endl;
 
@@ -72,7 +72,7 @@ Bencoder::readBencode(std::ifstream& inp)
 
 
 Tokens::Str*
-Bencoder::readStr(std::ifstream& inp)
+Bencoder::readStr(std::istream& inp)
 {
     std::cout << "Read Str" << std::endl;
 
@@ -104,7 +104,7 @@ Bencoder::readStr(std::ifstream& inp)
 
 
 Tokens::Dict*
-Bencoder::readDict(std::ifstream& inp)
+Bencoder::readDict(std::istream& inp)
 {
     std::cout << "Read Dict\n";
 
