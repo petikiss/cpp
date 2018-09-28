@@ -28,7 +28,7 @@ namespace utils
   class StringUtils
   {
     public:
-      static int stringToInt(std::string ch);
+      static int stringToInt(std::string str);
       static std::string intToString(int a);
       static int charToInt(char ch);
       static bool isDigit(char c);
