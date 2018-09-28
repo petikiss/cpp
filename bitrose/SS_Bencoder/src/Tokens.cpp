@@ -67,6 +67,7 @@ void Dict::print()
    std::cout << std::endl;
 }
 
+
 Dict::Dict()
 {
 }
@@ -80,6 +81,20 @@ Int::get()
 {
    return mInt;
 }
+
+
+void List::print()
+{
+   std::cout << "List print";
+
+   for (auto i : mList)
+   {
+      std::cout << "[";
+      std::cout << "]";
+   }
+   std::cout << std::endl;
+}
+
 
 }
 }

@@ -93,6 +93,43 @@ BOOST_FIXTURE_TEST_CASE(TestReadInt, fixture)
 }
 
 
+BOOST_FIXTURE_TEST_CASE(TestReadDict, fixture)
+{
+    dumpHeader("TestReadDict");
+
+    // Dictionary holding the associations: "month" => "4" and "name" => "april".
+    // All dictionary keys MUST be sorted.
+
+    std::string stringvalues = "d5:monthi4e4:name5:aprile";
+    std::istringstream iss (stringvalues);
+
+    Dict* dict = mBencoder->readDict(iss);
+
+    dict->print();
+
+    BOOST_CHECK(dict->mDict.size() == 2);
+}
+
+BOOST_FIXTURE_TEST_CASE(TestReadList, fixture)
+{
+    dumpHeader("TestReadList");
+
+
+    std::string stringvalues = "li2e3:fooe";
+    std::istringstream iss (stringvalues);
+
+    List* list = mBencoder->readList(iss);
+
+    list->print();
+
+    BOOST_CHECK(list->mList.size() == 2);
+
+}
+
+
+
+
+
 /*
 BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
 {

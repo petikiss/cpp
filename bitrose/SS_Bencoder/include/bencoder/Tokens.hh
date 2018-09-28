@@ -35,6 +35,7 @@ class Bencode
 {
 public:
    virtual void print() = 0;
+   //virtual void get() = 0;
 };
 
 class Int : public Bencode
@@ -72,7 +73,7 @@ public:
 class List : public Bencode
 {
 public:
-    void print() {}
+   void print();
 //private:
     std::list<Bencode*> mList;
 };

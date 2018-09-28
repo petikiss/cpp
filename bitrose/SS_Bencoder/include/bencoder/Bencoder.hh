@@ -43,6 +43,11 @@ class Bencoder
    Tokens::Str*     readStr(std::istream& inp);
    Tokens::Dict*    readDict(std::istream& inp);
    Tokens::Int*     readInt(std::istream& inp);
+   Tokens::List*    readList(std::istream& inp);
+
+
+   void readDictElement(Tokens::Dict* dict, std::istream& inp);
+   void readListElement(Tokens::List* list, std::istream& inp);
 
   private:
     logger::Logger* mLogger;

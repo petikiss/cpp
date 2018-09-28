@@ -52,7 +52,7 @@ Bencoder::readBencode(std::istream& inp)
     }
     else if(ch == 'l')
     {
-        assert("Not implemented LIST" == "0");
+       bencode = readList(inp);
     }
     else if (ch == 'i')
     {
@@ -79,7 +79,7 @@ Bencoder::readStr(std::istream& inp)
     // read string length at first
     std::string length = "";
     char ch = inp.get();
-    std::cout << "CH: " << ch << std::endl;
+
     while (utils::StringUtils::isDigit(ch))
     {
         length += ch;
@@ -96,9 +96,6 @@ Bencoder::readStr(std::istream& inp)
     }
 
 
-    std::cout << "str len: " << length << std::endl;
-    std::cout << "str: " << str << std::endl;
-
     return new Tokens::Str(str);
 }
 
@@ -108,17 +105,31 @@ Bencoder::readDict(std::istream& inp)
 {
     std::cout << "Read Dict\n";
 
-    // remove 'd' character
-    assert(inp.get() == 'd');
+    assert(inp.get() == 'd'); // beginning of a dictionary
 
     Tokens::Dict* dict = new Tokens::Dict();
+    while (inp.peek() != 'e')
+    {
+       readDictElement(dict, inp);
+    }
 
-    Tokens::Str* str = readStr(inp);
-    Tokens::Bencode* bencode = readBencode(inp);
-
-    dict->mDict[str] = bencode;
+    assert(inp.get() == 'e'); // end of a dictionary
 
     return dict;
+}
+
+
+void
+Bencoder::readDictElement(Tokens::Dict* dict, std::istream& inp)
+{
+   std::cout << "Read dict element";
+
+   Tokens::Str* str = readStr(inp);
+   Tokens::Bencode* bencode = readBencode(inp);
+
+   std::cout << "Adding an element to dict: {" << str->get() << "," << "}\n";
+
+   dict->mDict[str] = bencode;
 }
 
 
@@ -142,6 +153,36 @@ Bencoder::readInt(std::istream& inp)
    integer->mInt =  utils::StringUtils::stringToInt(number);
 
    return integer;
+}
+
+
+Tokens::List*
+Bencoder::readList(std::istream& inp)
+{
+   std::cout << "Read list";
+
+   assert(inp.get() == 'l'); // beginning of a list
+
+   Tokens::List* list = new Tokens::List();
+
+   while(inp.peek() != 'e')
+   {
+      readListElement(list, inp);
+   }
+
+   assert(inp.get() == 'e'); // end of a list
+
+   return list;
+}
+
+
+void Bencoder::readListElement(Tokens::List* list, std::istream& inp)
+{
+   std::cout << "Read list element";
+
+   Tokens::Bencode* bencode = readBencode(inp);
+
+   list->mList.push_back(bencode);
 }
 
 
