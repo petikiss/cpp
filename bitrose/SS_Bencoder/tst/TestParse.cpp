@@ -80,11 +80,16 @@ BOOST_FIXTURE_TEST_CASE(TestReadString, fixture)
 }
 
 
-BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
+BOOST_FIXTURE_TEST_CASE(TestReadInt, fixture)
 {
-    dumpHeader("TestReadDict");
+    dumpHeader("TestReadInt");
 
+    std::string stringvalues = "i19840919e";
+    std::istringstream iss (stringvalues);
 
+    Int* integer = mBencoder->readInt(iss);
+
+    BOOST_CHECK(19840919 == integer->get());
 }
 
 

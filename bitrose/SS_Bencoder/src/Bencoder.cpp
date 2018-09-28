@@ -56,7 +56,7 @@ Bencoder::readBencode(std::istream& inp)
     }
     else if (ch == 'i')
     {
-        assert("Not implemented INTEGER" == "0");
+       bencode = readInt(inp);
     }
     else if ( utils::StringUtils::isDigit(ch))
     {
@@ -122,11 +122,27 @@ Bencoder::readDict(std::istream& inp)
 }
 
 
-void
-Bencoder::createList(Tokens::Bencode* bencode)
+Tokens::Int*
+Bencoder::readInt(std::istream& inp)
 {
-    // remove 'd' character
-    // assert(inp.get() == 'l');
+   std::cout << "Read int";
+
+   assert(inp.get() == 'i');
+
+   Tokens::Int* integer = new Tokens::Int();
+
+   char ch = inp.get();
+   std::string number = "";
+   while (ch != 'e')
+   {
+      number += ch;
+      ch = inp.get();
+   }
+
+   integer->mInt =  utils::StringUtils::stringToInt(number);
+
+   return integer;
 }
+
 
 }

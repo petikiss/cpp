@@ -40,12 +40,9 @@ class Bencoder
     ~Bencoder();
 
    Tokens::Bencode* readBencode(std::istream& inp);
-
-
-   Tokens::Str* readStr(std::istream& inp);
-   Tokens::Dict* readDict(std::istream& inp);
-
-   void createList(Tokens::Bencode* bencode);
+   Tokens::Str*     readStr(std::istream& inp);
+   Tokens::Dict*    readDict(std::istream& inp);
+   Tokens::Int*     readInt(std::istream& inp);
 
   private:
     logger::Logger* mLogger;

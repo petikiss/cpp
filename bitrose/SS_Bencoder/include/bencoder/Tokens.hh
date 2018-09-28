@@ -41,6 +41,7 @@ class Int : public Bencode
 {
 public:
    void print();
+   int get();
 //private:
     int mInt;
 };

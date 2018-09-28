@@ -75,6 +75,11 @@ Dict::~Dict()
 {
 }
 
+int
+Int::get()
+{
+   return mInt;
+}
 
 }
 }
