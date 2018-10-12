@@ -6,6 +6,7 @@
 
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 using namespace Bencoder;
 using namespace Bencoder::Tokens;
