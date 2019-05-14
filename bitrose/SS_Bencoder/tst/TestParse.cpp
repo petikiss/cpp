@@ -124,7 +124,6 @@ BOOST_FIXTURE_TEST_CASE(TestReadList, fixture)
     list->print();
 
     BOOST_CHECK(list->mList.size() == 2);
-
 }
 
 
@@ -136,7 +135,6 @@ BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
 {
     dumpHeader("TestParseString");
 
-    Bencoder::Bencoder bc(m_logger);
     unsigned int pos1 = 0;
     BOOST_CHECK_EQUAL(bc.parseString("2:aa",pos1)->getValue(),"aa");
     BOOST_CHECK_EQUAL(pos1, 4);
@@ -145,15 +143,35 @@ BOOST_FIXTURE_TEST_CASE(TestParseString, fixture)
     BOOST_CHECK_EQUAL(bc.parseString("12:asdfasdfasdf",pos2)->getValue(),"asdfasdfasdf");
     BOOST_CHECK_EQUAL(pos2, 15);
 
-    unsigned int pos3 = 5;
-    BOOST_CHECK_EQUAL(bc.parseString("xxxxx100:aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee",pos3)->getValue(),"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee");
-    BOOST_CHECK_EQUAL(pos3, 109);
+    //  unsigned int pos3 = 5;
+    // BOOST_CHECK_EQUAL(bc.parseString("xxxxx100:aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee",pos3)->getValue(),"aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee");
+    // BOOST_CHECK_EQUAL(pos3, 109);
+}
+*/
 
 
+BOOST_FIXTURE_TEST_CASE(TestParseTorrentFile, fixture)
+{
+   dumpHeader("TestParseTorrentFile");
+
+   std::ifstream inp("tst/test.torrent");
+
+   BOOST_CHECK(!inp.fail());
+
+
+   if (inp.fail())
+   {
+      return;
+   }
+
+
+    Dict* dict = mBencoder->readDict(inp);
+
+    dict->print();
 }
 
 
-
+/*
 BOOST_FIXTURE_TEST_CASE(TestParseThreeString, fixture)
 {
     dumpHeader("Parse string three times");

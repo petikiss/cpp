@@ -31,6 +31,15 @@ void Int::print()
    std::cout << mInt;
 }
 
+
+int
+Int::get()
+{
+   return mInt;
+}
+
+// -------------------------------------------------
+
 Str::Str()
 {
 }
@@ -54,6 +63,9 @@ Str::get()
    return mStr;
 }
 
+
+// -------------------------------------------------
+
 void Dict::print()
 {
    for( auto i : mDict)
@@ -76,11 +88,8 @@ Dict::~Dict()
 {
 }
 
-int
-Int::get()
-{
-   return mInt;
-}
+// -------------------------------------------------
+
 
 
 void List::print()
@@ -95,6 +104,8 @@ void List::print()
    std::cout << std::endl;
 }
 
+
+// -------------------------------------------------
 
 }
 }

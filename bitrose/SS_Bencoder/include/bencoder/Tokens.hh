@@ -65,7 +65,7 @@ public:
    Dict();
    ~Dict();
    void print();
-
+   Bencode* find(std::string str);
 //private:
     std::map<Str*, Bencode*> mDict;
 };

@@ -80,6 +80,8 @@ Bencoder::readStr(std::istream& inp)
     std::string length = "";
     char ch = inp.get();
 
+    assert(utils::StringUtils::isDigit(ch) == true);
+
     while (utils::StringUtils::isDigit(ch))
     {
         length += ch;
@@ -131,6 +133,13 @@ Bencoder::readDictElement(Tokens::Dict* dict, std::istream& inp)
 
    dict->mDict[str] = bencode;
 }
+
+
+Tokens::Bencode*
+Bencoder::find(std::string)
+{
+}
+
 
 
 Tokens::Int*
