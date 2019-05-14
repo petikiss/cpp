@@ -1,5 +1,6 @@
 *.o
 *.class
 build*
-*.emacs
+*.emacs*
 *.out
+*#*
