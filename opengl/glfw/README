@@ -1,0 +1,2 @@
+on arch linux glfw intall:
+# pacman -S community/glfw-x11

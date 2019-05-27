@@ -1,6 +1,6 @@
-env=Environment(CPPPATH='/home/marci/git/cpp/opengl/glfw/include',
+env=Environment(CPPPATH='./include',
                 CPPDEFINES=[],
                 LIBS=['glfw', 'GL', 'dl']) 
 
 
-env.Program('src/glad.c', 'main.cpp')
+env.Program('a.out',['main.cpp', 'src/glad.c'])
