@@ -1,64 +1,77 @@
+#include "table.hh"
 
-#include "Table.hh"
+#include <iostream>
 
-
-Table::Table()
+namespace table
 {
-   for(TableTypeIterator it = mTable.begin(); it != mTable.end(); ++it)
-   {
-      for (std::array<char, 10>::iterator it2 = it->begin(); it2 != it->end(); ++it2)
-      {
-         *it2 = '_';
-      }
-   }
+
+const int TABLE_EMPTY_POSITION = -1;
+
+Table::Table(int x, int y) : mTable(nullptr)
+{
+    reset(x, y);
 }
 
-void
-Table::putX(int x, int y)
+Table::~Table()
 {
-   mTable[x][y] = 'X';
+
+}
+
+void Table::print() const
+{
+    std::cout << "Tabla:\n";
+    for(int i = 0; i < mX; ++i)
+    {
+        for(int j = 0; j < mY; ++j)
+        {
+            std::cout << mTable[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 
-void
-Table::putO(int x, int y)
+void Table::reset(int x, int y)
 {
-   mTable[x][y] = 'O';
+    mX = x;
+    mY = y;
+
+    if (mTable != nullptr)
+    {
+        for(int i = 0; i < mX; ++i)
+        {
+           delete [] mTable[i];
+        }
+        delete [] mTable;
+    }
+
+    mTable = new int*[x];
+    for(int i = 0; i < x; ++i)
+    {
+        mTable[i] = new int[y];
+    }
+
+    for(int i = 0; i < mX; ++i)
+    {
+        for(int j = 0; j < mY; ++j)
+        {
+            mTable[i][j]=TABLE_EMPTY_POSITION;
+        }
+    }
+}
+
+void Table::getSize(int& x, int& y) const
+{
+    x = mX;
+    y = mY;
+}
+
+bool Table::isFreePosition(int x, int y) const
+{
+    if ( mTable[x][y] == TABLE_EMPTY_POSITION) return true;
+
+    return false;
 }
 
 
-bool
-Table::winnerSituation()
-{
-   const int winCount = 5;
-
-   for(int i = 0; i < 10; ++i)
-   {
-      for (int j = 0; j < 10; ++j)
-      {
-         if ( mTable[i][j] != '_')
-         {
-            // horizontal check
-            // left
-            int left = 0;
-            for (int k = j-1; k > 0 && mTable[i][k] == mTable[i][j]; ++k)
-            {
-               left++;
-            }
-
-            int right = 0;
-            for(int k = j+1; k < 10 && mTable[i][k] == mTable[i][j]; ++k)
-            {
-               right++;
-            }
-
-            if (left+right+1 >= winCount)
-            {
-               return true;
-            }
-         }
-      }
-   }
-
-   return false;
-}
+} // namespace Table
